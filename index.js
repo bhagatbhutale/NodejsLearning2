@@ -1,14 +1,15 @@
-const express = require("express");
-const app = express();
-// Middle ware :-
-const reqFilter = require("./middleware");
+// const express = require("express");
+// const app = express();
+// // Middle ware :-
+// const reqFilter = require("./middleware");
 
-const route = express.Router();
+// const route = express.Router();
 
 
 // app.use(reqFilter)
 // Specific Middleware 
 route.use(reqFilter)
+app.use("/", route);
 route.get("/users", (req, res) => {
   res.send("welcome  to users Page");
 });
@@ -27,6 +28,6 @@ app.get("/about", (req, res) => {
 
 app.use("/" , route)
 
-app.listen(4500, () => {
-  console.log("Server is Started...")
-})
+// app.listen(4500, () => {
+//   console.log("Server is Started...")
+// })
