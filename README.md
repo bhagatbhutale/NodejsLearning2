@@ -3,7 +3,7 @@
 
 // 19-02-25 :-
 Post Api With Mongoose
+delete, update, get
 
-
-
+-  multer npm install : uploaded a file in upload folder
 
