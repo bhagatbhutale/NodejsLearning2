@@ -21,29 +21,32 @@ const ProductSchema = new mongoose.Schema( {
 
 const Product = mongoose.model("Products", ProductSchema)
 
-Product.insertMany([
-  {
-    name : "yash",
-    age : 20,
-    city : "uran",
-    job : "Mastery in Chatting Developer"
-  },
-  {
-    name : "Mayur",
-    age : 30,
-    city : "Neral",
-    job : "Developer"
-  },
-  {
-    name : "Mouse",
-    age : 10,
-    city : "room",
-    job :  "z"
-  }
-]).then((res) => console.log(res)).catch((err) => console.log(err))
+
+// 👉 Find Data
+Product.find({}).then((res) => console.log(res)).catch((err) => console.log(err))
 
 
-
+// 👉 Isert Many --> 
+// Product.insertMany([
+//   {
+//     name : "yash",
+//     age : 20,
+//     city : "uran",
+//     job : "Mastery in Chatting Developer"
+//   },
+//   {
+//     name : "Mayur",
+//     age : 30,
+//     city : "Neral",
+//     job : "Developer"
+//   },
+//   {
+//     name : "Mouse",
+//     age : 10,
+//     city : "room",
+//     job :  "z"
+//   }
+// ]).then((res) => console.log(res)).catch((err) => console.log(err))
 
 
 // 👉 Insert data in DB 
