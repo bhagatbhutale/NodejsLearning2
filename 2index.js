@@ -1,24 +1,74 @@
-// 👉 Multer use
+// Events and Event Emmitter in Node js
+
 const express = require("express");
-const multer = require("multer");
-const app = express();
+const EventEmitter = require("events");
+const app = express()
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, "uploads");
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.filename + "-" + Date.now() + ".jpg");
-    },
-  }),
-}).single("user_file")
+// Click Counts 
+const event = new EventEmitter();
 
-app.post("/upload", upload, (req, res) => {
-  res.send("File is Uploaded");
-});
+let count = 0;
 
-app.listen(7000);
+event.on("countAPI", () => {
+    count++
+    console.log("Event Called" , count)
+})
+
+
+app.get("/" , (req, res) => {
+    res.send("Api Called..")
+    event.emit("countAPI")
+})
+
+app.get("/search", (req, res) => {
+    res.send("Search api called..")
+})
+
+app.get("/update", (req, res) => {
+    res.send("Update api called...")
+})
+
+app.listen(8000)
+
+
+
+
+
+// 👉 OS module Learn 
+
+// const os = require("os");
+// // console.log(os.arch())
+// // console.log(os.freemem()/(1024*1024*1024))    // ram free in byte
+// // console.log(os.totalmem() / (1024 * 1024 * 1024));
+
+// console.log(os.hostname())
+// console.log(os.platform())
+// console.log(os.userInfo())
+
+
+
+
+// 👉 Multer use
+// const express = require("express");
+// const multer = require("multer");
+// const app = express();
+
+// const upload = multer({
+//   storage: multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, "uploads");
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, file.filename + "-" + Date.now() + ".jpg");
+//     },
+//   }),
+// }).single("user_file")
+
+// app.post("/upload", upload, (req, res) => {
+//   res.send("File is Uploaded");
+// });
+
+// app.listen(7000);
 
 // const express  = require("express");
 // require("./config")
@@ -75,4 +125,4 @@ app.listen(7000);
 //     res.send(data)
 // })
 
-app.listen(5000);
+// app.listen(5000);
