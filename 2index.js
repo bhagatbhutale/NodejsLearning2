@@ -12,4 +12,29 @@ app.post("/create", async (req, res) => {
     res.send(result)
 })
 
+// get data list 
+app.get("/list", async (req, res) => {
+    let data = await Product.find()
+    res.send(data)
+})
+
+// delete data 
+app.delete("/delete/:_id", async(req,res) => {
+    console.log(req.params)
+     let data = await Product.deleteOne(req.params);
+res.send(data)
+})
+
+// Update Data
+app.put("/update/:_id", async (req, res) => {
+    console.log(req.params)
+    let data = await Product.updateOne(
+        req.params, 
+        {
+            $set: req.body
+        }
+    )
+    res.send(data)
+})
+
 app.listen(5000)
